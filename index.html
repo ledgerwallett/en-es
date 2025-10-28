@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledger Wallet - Secure Crypto Storage</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00b4d8, #0077b6);
+            border-radius: 8px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, #00b4d8, #0077b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Hero section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #00b4d8, #90e0ef);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #b8b8b8;
+        }
+        
+        /* Animated crypto visualization */
+        .crypto-visualization {
+            height: 200px;
+            margin: 50px auto;
+            position: relative;
+            max-width: 800px;
+        }
+        
+        .crypto-coin {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .coin-1 {
+            background: linear-gradient(45deg, #f7931a, #ffb347);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .coin-2 {
+            background: linear-gradient(45deg, #00b4d8, #0077b6);
+            top: 60%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+        
+        .coin-3 {
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            top: 30%;
+            left: 40%;
+            animation-delay: 2s;
+        }
+        
+        .coin-4 {
+            background: linear-gradient(45deg, #00d26a, #00a85d);
+            top: 70%;
+            left: 60%;
+            animation-delay: 3s;
+        }
+        
+        .coin-5 {
+            background: linear-gradient(45deg, #ff3860, #b0003a);
+            top: 40%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+        
+        /* Features section */
+        .features {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #00b4d8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 180, 216, 0.2);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #00b4d8, #0077b6);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00b4d8;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #e6e6e6;
+        }
+        
+        .feature-card p {
+            color: #b8b8b8;
+        }
+        
+        /* Security section */
+        .security {
+            padding: 80px 0;
+        }
+        
+        .security-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .security-text {
+            flex: 1;
+        }
+        
+        .security-visual {
+            flex: 1;
+            height: 300px;
+            position: relative;
+        }
+        
+        .secure-shield {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #00b4d8, #0077b6);
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: shieldGlow 3s infinite alternate;
+        }
+        
+        .shield-icon {
+            font-size: 5rem;
+            color: white;
+        }
+        
+        .security-layers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .layer {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 180, 216, 0.3);
+            animation: layerPulse 4s infinite;
+        }
+        
+        .layer-1 {
+            width: 250px;
+            height: 250px;
+            top: -25px;
+            left: -25px;
+            animation-delay: 0s;
+        }
+        
+        .layer-2 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            animation-delay: 1s;
+        }
+        
+        .layer-3 {
+            width: 350px;
+            height: 350px;
+            top: -75px;
+            left: -75px;
+            animation-delay: 2s;
+        }
+        
+        /* Disclaimer section */
+        .disclaimer {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .disclaimer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .disclaimer h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ff3860;
+        }
+        
+        .disclaimer-text {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #ff3860;
+        }
+        
+        .disclaimer-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #b8b8b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #00b4d8;
+        }
+        
+        .copyright {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(0, 180, 216, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 180, 216, 0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        @keyframes shieldGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 40px rgba(0, 180, 216, 0.8);
+            }
+        }
+        
+        @keyframes layerPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.2;
+                transform: scale(1.1);
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .security-content {
+                flex-direction: column;
+            }
+            
+            .security-visual {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-icon">L</div>
+                    <div class="logo-text">Ledger Wallet</div>
+                </div>
+            </div>
+        </header>
+        
+        <section class="hero">
+            <h1>Secure Your Crypto Assets</h1>
+            <p>Ledger Wallet provides the highest level of security for your cryptocurrency investments with our state-of-the-art hardware wallet technology.</p>
+            
+            <div class="crypto-visualization">
+                <div class="crypto-coin coin-1">BTC</div>
+                <div class="crypto-coin coin-2">ETH</div>
+                <div class="crypto-coin coin-3">XRP</div>
+                <div class="crypto-coin coin-4">ADA</div>
+                <div class="crypto-coin coin-5">DOT</div>
+            </div>
+        </section>
+        
+        <section class="features">
+            <h2 class="section-title">Why Choose Ledger Wallet?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Military-Grade Security</h3>
+                    <p>Our hardware wallets utilize secure element chips that are certified against sophisticated attacks, ensuring your private keys never leave the device.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>Multi-Currency Support</h3>
+                    <p>Store and manage over 1,800 cryptocurrencies and tokens including Bitcoin, Ethereum, XRP, and many more in one secure device.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>User-Friendly Interface</h3>
+                    <p>Our intuitive Ledger Live application makes it easy to manage your portfolio, send and receive crypto, and track market movements.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Backup & Recovery</h3>
+                    <p>With our 24-word recovery phrase, you can easily restore access to your crypto assets if your device is lost, stolen, or damaged.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>DeFi & NFT Ready</h3>
+                    <p>Securely interact with decentralized applications, stake your assets, and manage your NFT collections directly from your Ledger device.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Community</h3>
+                    <p>Join millions of users worldwide who trust Ledger to secure their digital assets with our industry-leading security solutions.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="security">
+            <h2 class="section-title">Uncompromising Security</h2>
+            <div class="security-content">
+                <div class="security-text">
+                    <h3>How Ledger Protects Your Assets</h3>
+                    <p>Ledger hardware wallets are built with security as the primary focus. Unlike software wallets that are vulnerable to online threats, Ledger devices keep your private keys isolated in a secure chip, completely separate from your internet-connected computer or smartphone.</p>
+                    
+                    <p>Our proprietary operating system, BOLOS, ensures that each application on your Ledger device runs in complete isolation. This means that even if one app is compromised, your other assets remain completely secure.</p>
+                    
+                    <p>Every transaction must be physically confirmed on the device itself, preventing malware from altering transaction details. This combination of secure element technology, isolated application environment, and physical confirmation creates an impenetrable fortress for your digital wealth.</p>
+                </div>
+                
+                <div class="security-visual">
+                    <div class="secure-shield">
+                        <div class="shield-icon">🛡️</div>
+                    </div>
+                    <div class="security-layers">
+                        <div class="layer layer-1"></div>
+                        <div class="layer layer-2"></div>
+                        <div class="layer layer-3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="disclaimer">
+            <div class="disclaimer-content">
+                <h2>Important Disclaimer</h2>
+                <div class="disclaimer-text">
+                    <p><strong>Risk Warning:</strong> Cryptocurrency investments are subject to high market risk. The value of your investment may go down as well as up, and you may not get back the amount invested. You are solely responsible for your investment decisions and Ledger is not liable for any losses you may incur.</p>
+                    
+                    <p><strong>Security Responsibility:</strong> While Ledger devices provide industry-leading security features, ultimate security depends on proper usage. You are responsible for safeguarding your recovery phrase, PIN code, and following security best practices. Ledger cannot recover lost funds resulting from user error, loss of recovery phrase, or theft of both device and recovery phrase.</p>
+                    
+                    <p><strong>Regulatory Compliance:</strong> It is your responsibility to ensure that your use of Ledger products and services complies with applicable laws and regulations in your jurisdiction. Cryptocurrency regulations vary significantly by country and may change over time.</p>
+                    
+                    <p><strong>No Financial Advice:</strong> This website and Ledger products do not constitute financial advice, investment advice, or trading advice. We do not recommend whether to buy, sell, or hold cryptocurrencies. You should conduct your own research and consult with a qualified financial advisor before making investment decisions.</p>
+                    
+                    <p><strong>Technical Limitations:</strong> Ledger strives to provide accurate and up-to-date information, but we do not guarantee the accuracy, completeness, or timeliness of any information on this website. Technology and the cryptocurrency space evolve rapidly, and information may become outdated.</p>
+                    
+                    <p><strong>Third-Party Services:</strong> Ledger devices may interact with third-party services, applications, and platforms. Ledger is not responsible for the security, functionality, or content of these third-party services. Use them at your own risk.</p>
+                    
+                    <p>By using Ledger products and services, you acknowledge that you have read, understood, and agree to this disclaimer and our Terms of Service.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Support</a>
+                <a href="#">Documentation</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Ledger Wallet. All rights reserved. This is a demonstration website and not affiliated with the official Ledger company.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
